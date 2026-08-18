@@ -1,709 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R-Kits Tunisia | DIY Robot Kits & Electronics</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #060913;
-            --card-bg: rgba(18, 26, 43, 0.65);
-            --accent-cyan: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.4);
-            --facebook-blue: #0084FF;
-            --facebook-gradient: linear-gradient(135deg, #0084FF 0%, #00C6FF 100%);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R-Kits Tunisia | Store</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 132, 255, 0.08) 0%, transparent 40%);
-        }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      padding: 2rem;
+    }
 
-        /* CHIC INTRO SPLASH SCREEN */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: #060913;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
-        }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
 
-        .splash-title {
-            font-size: clamp(2.8rem, 9vw, 5rem);
-            font-weight: 800;
-            letter-spacing: 8px;
-            background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #0084FF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: splashEntrance 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.6));
-        }
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
 
-        .splash-line {
-            width: 0px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #38bdf8, transparent);
-            margin-top: 15px;
-            animation: lineExpand 1.5s ease-in-out forwards 0.2s;
-            box-shadow: 0 0 12px var(--accent-cyan);
-        }
+    /* Search & Filter Controls */
+    .controls-container {
+      max-width: 900px;
+      margin: 0 auto 2.5rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
 
-        @keyframes splashEntrance {
-            0% { transform: scale(0.85); opacity: 0; letter-spacing: 2px; filter: blur(10px); }
-            50% { transform: scale(1.05); opacity: 1; letter-spacing: 12px; filter: blur(0px); }
-            100% { transform: scale(1); opacity: 1; letter-spacing: 8px; }
-        }
+    .search-box {
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+    }
 
-        @keyframes lineExpand {
-            to { width: 200px; }
-        }
+    .search-box input {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      border-radius: 25px;
+      border: 1px solid var(--border);
+      background-color: var(--card-bg);
+      color: var(--text-main);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
 
-        .splash-fade-out {
-            opacity: 0 !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-        }
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
 
-        /* COMPACT ANNOUNCEMENT BANNER */
-        .announcement-bar {
-            background: linear-gradient(135deg, rgba(13, 21, 39, 0.95) 0%, rgba(23, 37, 84, 0.95) 50%, rgba(11, 19, 41, 0.95) 100%);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--accent-cyan);
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
-            padding: 1.1rem 1rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            position: relative;
-            z-index: 101;
-        }
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
 
-        .announcement-title {
-            font-size: clamp(1rem, 3vw, 1.25rem);
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-            line-height: 1.2;
-            text-shadow: 0 2px 10px rgba(56, 189, 248, 0.3);
-        }
+    .cat-btn {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
 
-        .announcement-subtitle {
-            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
-            color: var(--accent-cyan);
-            font-weight: 500;
-            max-width: 650px;
-        }
+    .cat-btn:hover, .cat-btn.active {
+      background-color: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
 
-        .announcement-links {
-            display: flex;
-            gap: 10px;
-            margin-top: 4px;
-            justify-content: center;
-        }
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
-        .social-tag {
-            text-decoration: none;
-            padding: 8px 22px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #fff;
-            background: var(--facebook-gradient);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(0, 132, 255, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s;
+    }
 
-        .social-tag::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.5s;
-        }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
 
-        .social-tag:hover::before {
-            left: 100%;
-        }
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
 
-        .social-tag:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 198, 255, 0.5);
-        }
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
 
-        /* HEADER & LOGO */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            background: rgba(6, 9, 19, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
+    .price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
 
-        .logo-img {
-            height: 38px;
-            width: auto;
-            border-radius: 8px;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .logo-text {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .btn-sell-header {
-            background: rgba(0, 132, 255, 0.12);
-            color: var(--accent-cyan);
-            border: 1px solid var(--accent-cyan);
-            padding: 0.45rem 1rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .btn-sell-header:hover {
-            background: var(--facebook-gradient);
-            color: #fff;
-            border-color: transparent;
-            box-shadow: 0 0 20px rgba(0, 198, 255, 0.5);
-            transform: translateY(-2px);
-        }
-
-        /* HERO SECTION */
-        .hero {
-            text-align: center;
-            padding: 2.2rem 1rem 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: clamp(1.8rem, 5vw, 2.8rem);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: clamp(0.9rem, 3vw, 1.1rem);
-        }
-
-        /* CATEGORY FILTER TABS */
-        .category-filter {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin: 1.5rem auto 1rem;
-            padding: 0 1rem;
-            max-width: 1000px;
-        }
-
-        .filter-btn {
-            background: rgba(22, 31, 48, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
-            padding: 0.55rem 1.2rem;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(8px);
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--accent-cyan);
-            color: var(--bg-color);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px var(--accent-glow);
-            transform: translateY(-2px);
-        }
-
-        /* PRODUCT GRID CONTAINER */
-        .container {
-            max-width: 1200px;
-            margin: 1rem auto 2rem;
-            padding: 0 1rem;
-            flex: 1;
-        }
-
-        .category-section-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            margin: 2rem 0 1rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-left: 4px solid var(--accent-cyan);
-            padding-left: 12px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
-        @media (min-width: 640px) {
-            .grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 22px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 26px;
-            }
-        }
-
-        /* SCROLL ANIMATION CARD CLASS */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease, opacity 0.8s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-        }
-
-        .card.reveal {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 12px 30px var(--accent-glow);
-        }
-
-        .card-img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-            background-color: #1e293b;
-            transition: transform 0.5s ease;
-        }
-
-        .card:hover .card-img {
-            transform: scale(1.05);
-        }
-
-        .card-body {
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            justify-content: space-between;
-            background: linear-gradient(180deg, rgba(18, 26, 43, 0.2) 0%, rgba(18, 26, 43, 0.9) 100%);
-        }
-
-        .card-tag {
-            font-size: 0.7rem;
-            font-weight: 800;
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-
-        .card-title {
-            font-size: clamp(0.9rem, 2.5vw, 1.05rem);
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-            line-height: 1.3;
-        }
-
-        .card-price {
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            font-weight: 800;
-            color: var(--accent-cyan);
-            margin-bottom: 0.8rem;
-        }
-
-        .btn-details {
-            width: 100%;
-            padding: 0.6rem;
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-cyan);
-            border: 1px solid var(--accent-cyan);
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover .btn-details {
-            background: var(--accent-cyan);
-            color: var(--bg-color);
-        }
-
-        /* MODAL POPUP */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 1rem;
-        }
-
-        .modal {
-            background: #0f172a;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 24px;
-            max-width: 480px;
-            width: 100%;
-            padding: 1.8rem;
-            position: relative;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--accent-glow);
-            animation: modalEnter 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes modalEnter {
-            from { opacity: 0; transform: scale(0.8) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1.2rem;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .close-btn:hover { color: #fff; }
-
-        .modal-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.4rem;
-            padding-right: 1.5rem;
-        }
-
-        .modal-price {
-            font-size: 1.3rem;
-            color: var(--accent-cyan);
-            font-weight: 800;
-            margin-bottom: 0.9rem;
-        }
-
-        .modal-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.4rem;
-        }
-
-        .btn-facebook-modal {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-            padding: 0.95rem;
-            background: var(--facebook-gradient);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 800;
-            border-radius: 14px;
-            font-size: 1rem;
-            box-shadow: 0 8px 20px rgba(0, 132, 255, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .btn-facebook-modal:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(0, 198, 255, 0.6);
-        }
-
-        footer {
-            text-align: center;
-            padding: 1.8rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 2rem;
-        }
-    </style>
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--text-muted);
+      padding: 3rem;
+      font-size: 1.1rem;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- CHIC ENTRANCE SPLASH SCREEN -->
-    <div id="splash-screen">
-        <div class="splash-title">R-KITS</div>
-        <div class="splash-line"></div>
+  <header>
+    <h1>R-Kits Tunisia</h1>
+    <p style="color: var(--text-muted);">Robotics & Embedded Systems Store</p>
+  </header>
+
+  <div class="controls-container">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search products, sensors, boards..." oninput="applyFilters()">
     </div>
 
-    <!-- COMPACT CUSTOM IMPORT BANNER -->
-    <div class="announcement-bar">
-        <div class="announcement-title">📦 CUSTOM IMPORT & KIT LISTINGS</div>
-        <div class="announcement-subtitle">Need a specific component imported to Tunisia, or have custom kits to sell?</div>
-        <div class="announcement-links">
-            <a href="https://facebook.com/your-page-link" target="_blank" class="social-tag">Contact via Facebook Page</a>
+    <div class="categories" id="categoryButtons">
+      <button class="cat-btn active" onclick="setCategory('all', this)">All</button>
+      <button class="cat-btn" onclick="setCategory('kits', this)">DIY Kits</button>
+      <button class="cat-btn" onclick="setCategory('boards', this)">Boards</button>
+      <button class="cat-btn" onclick="setCategory('motors', this)">Motors</button>
+      <button class="cat-btn" onclick="setCategory('sensors', this)">Sensors</button>
+    </div>
+  </div>
+
+  <main class="product-grid" id="productContainer"></main>
+
+  <script>
+    const products = [
+      { id: 1, title: '4WD Smart Robot Car Kit', category: 'kits', price: '120 TND', desc: 'Complete chassis kit with motor drivers and Bluetooth module.' },
+      { id: 2, title: 'Arduino Uno R3', category: 'boards', price: '28 TND', desc: 'ATmega328P development board with USB cable.' },
+      { id: 3, title: 'ESP32 Wi-Fi + BT Board', category: 'boards', price: '35 TND', desc: 'Dual-core microcontroller with wireless connectivity.' },
+      { id: 4, title: 'L298N Motor Driver', category: 'motors', price: '12 TND', desc: 'Dual H-bridge driver module for DC and stepper motors.' },
+      { id: 5, title: 'SG90 Servo Motor (4 Pack)', category: 'motors', price: '24 TND', desc: '9g micro servo motors ideal for lightweight robotic joints.' },
+      { id: 6, title: 'HC-SR04 Ultrasonic Sensor', category: 'sensors', price: '8 TND', desc: 'Distance measurement sensor with 2cm-400cm range.' },
+      { id: 7, title: 'ESP32-CAM Camera Module', category: 'sensors', price: '32 TND', desc: 'Integrated OV2640 camera with Wi-Fi video streaming.' },
+      { id: 8, title: '4-DOF Robotic Arm Kit', category: 'kits', price: '95 TND', desc: 'Acrylic robotic arm frame with servos for manipulation.' }
+    ];
+
+    let currentCategory = 'all';
+
+    function setCategory(cat, element) {
+      currentCategory = cat;
+      
+      // Update active button state
+      document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+      const container = document.getElementById('productContainer');
+      
+      const filtered = products.filter(product => {
+        const matchesCategory = (currentCategory === 'all') || (product.category === currentCategory);
+        const matchesSearch = product.title.toLowerCase().includes(searchQuery) || 
+                              product.desc.toLowerCase().includes(searchQuery);
+        
+        return matchesCategory && matchesSearch;
+      });
+
+      renderProducts(filtered);
+    }
+
+    function renderProducts(items) {
+      const container = document.getElementById('productContainer');
+      
+      if (items.length === 0) {
+        container.innerHTML = `<div class="no-results">No products found matching your search.</div>`;
+        return;
+      }
+
+      container.innerHTML = items.map(product => `
+        <div class="card">
+          <div>
+            <h3>${product.title}</h3>
+            <p>${product.desc}</p>
+          </div>
+          <div class="card-footer">
+            <span class="price">${product.price}</span>
+          </div>
         </div>
-    </div>
+      `).join('');
+    }
 
-    <!-- HEADER -->
-    <header>
-        <a href="#" class="logo-container">
-            <img src="https://via.placeholder.com/40/38bdf8/0b0f19?text=R" alt="R-Kits Logo" class="logo-img">
-            <span class="logo-text">R-KITS.TN</span>
-        </a>
-        <a href="https://facebook.com/your-page-link" target="_blank" class="btn-sell-header">+ Sell a Kit</a>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero">
-        <h1>Educational Robotics & Electronics</h1>
-        <p>Explore DIY kits, microcontrollers, motors, and sensors for university projects in Tunisia.</p>
-    </section>
-
-    <!-- CATEGORY FILTER TABS -->
-    <div class="category-filter">
-        <button class="filter-btn active" onclick="filterCategory('all')">All Products</button>
-        <button class="filter-btn" onclick="filterCategory('kits')">🤖 DIY Kits</button>
-        <button class="filter-btn" onclick="filterCategory('boards')">🧠 Boards & Embedded</button>
-        <button class="filter-btn" onclick="filterCategory('motors')">⚙️ Motors & Drivers</button>
-        <button class="filter-btn" onclick="filterCategory('sensors')">📡 Sensors & Cameras</button>
-    </div>
-
-    <!-- PRODUCT GRID -->
-    <main class="container" id="main-container">
-        <!-- Rendered via JS -->
-    </main>
-
-    <!-- MODAL POPUP -->
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal">
-            <button class="close-btn" onclick="closeModal()">&times;</button>
-            <h2 class="modal-title" id="modal-title"></h2>
-            <div class="modal-price" id="modal-price"></div>
-            <p class="modal-desc" id="modal-desc"></p>
-            <a href="https://facebook.com/your-page-link" target="_blank" id="modal-fb-btn" class="btn-facebook-modal">
-                Order via Facebook
-            </a>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 R-Kits Tunisia — University Project Store</p>
-    </footer>
-
-    <script>
-        const FACEBOOK_PAGE_URL = "https://facebook.com/your-page-link"; 
-
-        // SPLASH SCREEN TIMER
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                splash.classList.add('splash-fade-out');
-            }, 1800);
-        });
-
-        // CATEGORIZED PRODUCTS DATA
-        const categories = [
-            {
-                id: "kits",
-                title: "🤖 DIY Robot Kits",
-                items: [
-                    { id: 1, name: "4WD Smart Car Rover", price: "85 TND", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&q=80", description: "4WD robotic chassis with Arduino, ultrasonic obstacle avoidance sensor, and motor driver shield." },
-                    { id: 2, name: "Bipedal Walker Bot", price: "120 TND", image: "https://images.unsplash.com/photo-1535378273068-9bb67d5beacd?w=500&q=80", description: "Humanoid walking kit powered by 4 servo motors. Includes bluetooth module for phone control." },
-                    { id: 3, name: "4-DOF Robotic Arm Kit", price: "140 TND", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&q=80", description: "Acrylic desktop mechanical claw with analog joysticks for learning servo control kinematics." },
-                    { id: 6, name: "Spider Hexapod Crawler", price: "180 TND", image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=500&q=80", description: "6-legged spider crawler bot using 18 micro servos for realistic terrain traversal." }
-                ]
-            },
-            {
-                id: "boards",
-                title: "🧠 Boards & Microcontrollers",
-                items: [
-                    { id: 4, name: "ESP32 WiFi + Bluetooth Board", price: "28 TND", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80", description: "Dual-core ESP-WROOM-32 microchip board ideal for IoT and wireless robotics projects." },
-                    { id: 13, name: "Arduino Uno R3 Microcontroller", price: "25 TND", image: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=500&q=80", description: "ATmega328P based development board with USB cable. Essential for robotics beginners." },
-                    { id: 14, name: "Raspberry Pi Pico W", price: "35 TND", image: "https://images.unsplash.com/photo-1608564697071-ddf911d81370?w=500&q=80", description: "RP2040 dual-core ARM Cortex M0+ board with onboard 2.4GHz WiFi module." },
-                    { id: 7, name: "STM32 Nucleo Board", price: "45 TND", image: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=500&q=80", description: "High-performance ARM Cortex-M4 development platform for fast embedded processing." }
-                ]
-            },
-            {
-                id: "motors",
-                title: "⚙️ Motors, Drivers & Actuators",
-                items: [
-                    { id: 8, name: "L298N Dual Motor Driver", price: "12 TND", image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&q=80", description: "Dual H-Bridge driver module for driving DC motors and 4-wire stepper motors up to 2A." },
-                    { id: 15, name: "SG90 Micro Servo (4x Pack)", price: "24 TND", image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=500&q=80", description: "Set of 4 lightweight 9g mini servos with control horns for robotic joints." },
-                    { id: 16, name: "NEMA 17 Stepper Motor", price: "38 TND", image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&q=80", description: "High precision 1.8 degree bipolar stepper motor for 3D printers and CNC/Robotics." }
-                ]
-            },
-            {
-                id: "sensors",
-                title: "📡 Sensors & Camera Modules",
-                items: [
-                    { id: 5, name: "ESP32-CAM Vision Module", price: "32 TND", image: "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=500&q=80", description: "Compact camera board with OV2640 camera module for live video streaming and object detection." },
-                    { id: 9, name: "HC-SR04 Ultrasonic Sensor", price: "8 TND", image: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=500&q=80", description: "Non-contact distance measurement sensor module ranging from 2cm to 400cm." },
-                    { id: 10, name: "MPU6050 Gyro + Accelerometer", price: "14 TND", image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=500&q=80", description: "6-DOF Motion tracking sensor for self-balancing robots and drone orientation." }
-                ]
-            }
-        ];
-
-        let activeFilter = 'all';
-
-        function renderProducts() {
-            const container = document.getElementById('main-container');
-            container.innerHTML = '';
-
-            categories.forEach(cat => {
-                if (activeFilter === 'all' || activeFilter === cat.id) {
-                    let sectionHTML = `
-                        <div class="category-section">
-                            <div class="category-section-title">${cat.title}</div>
-                            <div class="grid">
-                    `;
-
-                    cat.items.forEach(p => {
-                        sectionHTML += `
-                            <div class="card" onclick="openModal(${p.id})">
-                                <img src="${p.image}" alt="${p.name}" class="card-img" loading="lazy">
-                                <div class="card-body">
-                                    <div>
-                                        <div class="card-tag">${cat.id}</div>
-                                        <div class="card-title">${p.name}</div>
-                                        <div class="card-price">${p.price}</div>
-                                    </div>
-                                    <button class="btn-details">Details</button>
-                                </div>
-                            </div>
-                        `;
-                    });
-
-                    sectionHTML += `</div></div>`;
-                    container.innerHTML += sectionHTML;
-                }
-            });
-
-            initScrollObserver();
-        }
-
-        function filterCategory(catId) {
-            activeFilter = catId;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            renderProducts();
-        }
-
-        function initScrollObserver() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('reveal');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.card').forEach(card => observer.observe(card));
-        }
-
-        function openModal(id) {
-            let product = null;
-            categories.forEach(cat => {
-                const found = cat.items.find(p => p.id === id);
-                if (found) product = found;
-            });
-
-            if (product) {
-                document.getElementById('modal-title').innerText = product.name;
-                document.getElementById('modal-price').innerText = product.price;
-                document.getElementById('modal-desc').innerText = product.description;
-                document.getElementById('modal-fb-btn').href = FACEBOOK_PAGE_URL;
-                document.getElementById('modal-overlay').style.display = 'flex';
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('modal-overlay').style.display = 'none';
-        }
-
-        window.onclick = function(e) {
-            if (e.target == document.getElementById('modal-overlay')) closeModal();
-        }
-
-        renderProducts();
-    </script>
+    // Initial render
+    applyFilters();
+  </script>
 </body>
 </html>
