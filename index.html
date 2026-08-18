@@ -80,21 +80,7 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 3.5rem 1rem 1.8rem 1rem;
-    }
-
-    .brand-badge {
-      display: inline-block;
-      padding: 0.35rem 1rem;
-      border-radius: 30px;
-      background: rgba(168, 85, 247, 0.12);
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      color: #c084fc;
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 0.8rem;
+      padding: 3rem 1rem 1.8rem 1rem;
     }
 
     header h1 {
@@ -104,12 +90,44 @@
       background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     header p {
       color: var(--text-muted);
       font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Custom Import & Listing Banner */
+    .custom-request-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 30px;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #e9d5ff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .custom-request-banner:hover {
+      border-color: rgba(6, 182, 212, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(6, 182, 212, 0.25);
+    }
+
+    .contact-link {
+      color: var(--accent-cyan);
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 700;
     }
 
     /* Controls Container */
@@ -191,7 +209,7 @@
       color: #fff;
     }
 
-    /* Fun Category Pills */
+    /* Category Pills */
     .categories {
       display: flex;
       flex-wrap: wrap;
@@ -464,9 +482,14 @@
   </div>
 
   <header>
-    <span class="brand-badge">Official Store</span>
     <h1>R-Kits Tunisia</h1>
     <p>Discover & order top-tier robotics parts in seconds</p>
+    
+    <!-- Stylish Custom Request Callout Banner -->
+    <div class="custom-request-banner">
+      <span>✨ Want to import something specific or list an item?</span>
+      <a href="https://facebook.com/your-page-link" target="_blank" class="contact-link">Contact us!</a>
+    </div>
   </header>
 
   <!-- Interactive Search & Category Controls -->
@@ -474,7 +497,7 @@
     
     <div class="search-wrapper">
       <div class="search-input-box">
-        <span class="search-icon">✨</span>
+        <span class="search-icon">🔍</span>
         <input 
           type="text" 
           id="searchInput" 
